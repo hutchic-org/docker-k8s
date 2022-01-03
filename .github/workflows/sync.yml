@@ -1,0 +1,19 @@
+---
+on: [push, pull_request, workflow_dispatch] # yamllint disable-line rule:truthy
+
+jobs:
+  template-sync:
+    timeout-minutes: 20
+
+    # only runs on main branch
+    if: ${{ github.ref == 'refs/heads/master' && fromJSON(needs.metadata.outputs.repository).is_template }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2.4.0
+    - uses: ahmadnassri/action-workflow-queue@v1
+    - uses: ahmadnassri/action-template-repository-sync@v1.6.0
+      with:
+        github-token: ${{ secrets.GH_TOKEN }}
+        dry-run: true
