@@ -6,7 +6,7 @@ jobs:
     timeout-minutes: 20
 
     # only runs on main branch
-    if: ${{ github.ref == 'refs/heads/master' && fromJSON(needs.metadata.outputs.repository).is_template }}
+    if: ${{ github.ref == 'refs/heads/main' && fromJSON(needs.metadata.outputs.repository).is_template }}
 
     runs-on: ubuntu-latest
 
