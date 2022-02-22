@@ -14,6 +14,11 @@ RUN wget https://storage.googleapis.com/kubernetes-release/release/$(wget https:
     && chmod g+rwX /home/ubuntu/.kube \
     && kubectl
 
+RUN wget https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -q -O awscliv2.zip \
+    && unzip awscliv2.zip \
+    && ./aws/install \
+    && aws --version
+
 RUN wget https://github.com/kubernetes-sigs/krew/releases/latest/download/krew-linux_amd64.tar.gz -q -O krew.tar.gz \
     && tar -xzvf krew.tar.gz
 
