@@ -19,6 +19,11 @@ RUN wget https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -q -O awscliv2
     && ./aws/install \
     && aws --version
 
+RUN wget https://get.helm.sh/helm-canary-linux-amd64.tar.gz -q -O helm.tar.gz \
+    && tar -xzvf helm.tar.gz \
+    && mv linux-amd64/helm /usr/local/bin/helm \
+    && helm version
+
 RUN wget https://github.com/kubernetes-sigs/krew/releases/latest/download/krew-linux_amd64.tar.gz -q -O krew.tar.gz \
     && tar -xzvf krew.tar.gz
 
