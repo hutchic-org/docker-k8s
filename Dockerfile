@@ -14,7 +14,16 @@ RUN wget https://storage.googleapis.com/kubernetes-release/release/$(wget https:
     && chmod g+rwX /home/ubuntu/.kube \
     && kubectl
 
+RUN wget https://github.com/kubernetes-sigs/krew/releases/latest/download/krew-linux_amd64.tar.gz -q -O krew.tar.gz \
+    && tar -xzvf krew.tar.gz
+
 USER ubuntu
 WORKDIR /home/ubuntu
+
+RUN /krew-linux_amd64 install krew \
+    && echo 'export PATH="$HOME/.krew/bin:$PATH"' >> ~/.bashrc \
+    && export PATH="$HOME/.krew/bin:$PATH" \
+    && kubectl krew update \
+    && kubectl krew install exec-as modify-secret view-secret whoami
 
 CMD ["kubectl"]
