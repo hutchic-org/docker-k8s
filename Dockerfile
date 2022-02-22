@@ -47,4 +47,4 @@ RUN /krew-linux_amd64 install krew \
     && kubectl krew update \
     && kubectl krew install exec-as modify-secret view-secret whoami
 
-CMD ["kubectl"]
+CMD ["/bin/bash"]
