@@ -29,6 +29,12 @@ RUN wget https://raw.githubusercontent.com/ahmetb/kubectx/master/kubectx -q -O /
     && wget https://raw.githubusercontent.com/ahmetb/kubectx/master/kubens -q -O /usr/local/bin/kubens \
     && chmod +x /usr/local/bin/kubens
 
+RUN wget https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64 -q -O /usr/local/bin/kind \
+    && chmod +x /usr/local/bin/kind \
+    && wget https://get.docker.com -o get-docker.sh -q -O get-docker.sh \
+    && sh ./get-docker.sh \
+    && usermod -aG docker ubuntu
+
 RUN wget https://github.com/kubernetes-sigs/krew/releases/latest/download/krew-linux_amd64.tar.gz -q -O krew.tar.gz \
     && tar -xzvf krew.tar.gz
 
