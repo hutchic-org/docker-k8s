@@ -3,24 +3,23 @@ name: pre-commit
 
 on:  # yamllint disable-line rule:truthy
   pull_request:
-  push:
-    branches:
-    - main
 
 jobs:
+  lint-pr-title:
+    name: Validate PR title
+    runs-on: ubuntu-latest
+    steps:
+    - uses: amannn/action-semantic-pull-request@v4
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   pre-commit:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
       with:
-        fetch-depth: 0
-    - uses: actions/setup-python@v3
-    - name: install shfmt
-      run: |
-        mkdir -p $GITHUB_WORKSPACE/bin
-        curl -L -s -o $GITHUB_WORKSPACE/bin/shfmt https://github.com/mvdan/sh/releases/download/v3.1.2/shfmt_v3.1.2_linux_amd64
-        chmod +x $GITHUB_WORKSPACE/bin/shfmt
-        echo "$GITHUB_WORKSPACE/bin" >> $GITHUB_PATH
+        python-version: '3.8'
+    - run: pip install 'virtualenv<20.11.0'
     - uses: pre-commit/action@v2.0.3
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
