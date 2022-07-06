@@ -17,6 +17,9 @@ updates:
     interval: weekly
 
 - package-ecosystem: npm
-  directory: /
+  directory: /frontend/
+  ignore:
+  - dependency-name: '*'
+    update-types: [version-update:semver-major]
   schedule:
     interval: daily
