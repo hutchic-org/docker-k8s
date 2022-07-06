@@ -36,13 +36,4 @@ repos:
   hooks:
   - id: detect-secrets
     args: [--baseline, .secrets.baseline]
-- repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
-  rev: 0.2.1
-  hooks:
-  - id: yamlfmt
-    args: [--mapping, '2', --sequence, '2', --offset, '0', --width, '150']
-- repo: https://github.com/adrienverge/yamllint
-  rev: v1.26.3
-  hooks:
-  - id: yamllint
-    args: [--format, parsable, --strict]
+
