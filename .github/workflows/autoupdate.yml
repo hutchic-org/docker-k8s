@@ -1,0 +1,13 @@
+name: Auto update PR's
+
+on: push
+
+jobs:
+  autoupdate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: PR Auto Updater
+        uses: grmoon/autoupdater@0.0.2
+        env:
+          GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
