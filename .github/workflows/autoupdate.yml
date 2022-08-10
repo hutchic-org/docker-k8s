@@ -1,13 +1,19 @@
 name: Auto update PR's
 
-on: push
-
+on:
+  push:
+    branches:
+      - 'main'
 jobs:
   autoupdate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: PR Auto Updater
-        uses: grmoon/autoupdater@0.0.2
-        env:
-          GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
+      - name: Automatically update PR
+        uses: adRise/update-pr-branch@v0.6.0
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          base: 'main'
+          required_approval_count: 0
+          require_passed_checks: true
+          sort: 'created'
+          direction: 'desc'
