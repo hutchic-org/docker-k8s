@@ -47,8 +47,4 @@ RUN /krew-linux_amd64 install krew \
     && kubectl krew update \
     && kubectl krew install exec-as modify-secret view-secret whoami
 
-USER root
-COPY docker-entrypoint.sh /docker-entrypoint.sh
-
-ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/bin/bash"]

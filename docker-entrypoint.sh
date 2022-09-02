@@ -14,4 +14,4 @@ if [ -S ${DOCKER_SOCKET} ]; then
         addgroup $RUNUSER docker
     fi
 fi
-exec su ubuntu -c "cd /src; /bin/bash"
+exec su ubuntu -c "cd /src && /bin/bash $@"
