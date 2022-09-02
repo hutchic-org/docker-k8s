@@ -3,8 +3,8 @@ FROM ubuntu:focal@sha256:fd92c36d3cb9b1d027c4d2a72c6bf0125da82425fc2ca37c414d4f0
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends ca-certificates openssl wget curl unzip sudo adduser less git pkg-config \
-    && groupadd --gid 1000 ubuntu \
-    && useradd --uid 1000 --gid 1000 -m ubuntu \
+    && groupadd --gid 1001 ubuntu \
+    && useradd --uid 1001 --gid 1001 -m ubuntu \
     && echo ubuntu ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/ubuntu \
     && chmod 0440 /etc/sudoers.d/ubuntu
 
@@ -38,8 +38,8 @@ RUN wget https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64 -q -O /usr/local/b
 RUN wget https://github.com/kubernetes-sigs/krew/releases/latest/download/krew-linux_amd64.tar.gz -q -O krew.tar.gz \
     && tar -xzvf krew.tar.gz
 
+RUN mkdir -p /src && chown -R ubuntu:ubuntu /src
 USER ubuntu
-WORKDIR /home/ubuntu
 
 RUN /krew-linux_amd64 install krew \
     && echo 'export PATH="$HOME/.krew/bin:$PATH"' >> ~/.bashrc \
@@ -47,4 +47,8 @@ RUN /krew-linux_amd64 install krew \
     && kubectl krew update \
     && kubectl krew install exec-as modify-secret view-secret whoami
 
+USER root
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/bin/bash"]
