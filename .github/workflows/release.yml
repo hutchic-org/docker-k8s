@@ -37,7 +37,7 @@ jobs:
       id: meta
       uses: crazy-max/ghaction-docker-meta@v4
       with:
-        images: ${{ github.repository }}
+        images: hutchic/${{ github.event.repository.name }}
         tags: |
           type=semver,pattern={{version}},value=${{ steps.release.outputs.release-version }}
           type=ref,event=branch
