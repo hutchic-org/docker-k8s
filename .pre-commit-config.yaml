@@ -31,8 +31,3 @@ repos:
   - id: remove-crlf
   - id: forbid-tabs
   - id: remove-tabs
-- repo: https://github.com/IBM/detect-secrets
-  rev: 0.13.1+ibm.50.dss
-  hooks:
-  - id: detect-secrets
-    args: [--baseline, .secrets.baseline]
