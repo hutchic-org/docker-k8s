@@ -23,7 +23,7 @@ jobs:
     - name: Setup buildx
       uses: docker/setup-buildx-action@v2
     - name: Build Only
-      uses: docker/bake-action@v3
+      uses: docker/bake-action@v4
       with:
         files: |
           ./docker-bake.hcl
@@ -48,7 +48,7 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_TOKEN }}
     - name: Build & Push
-      uses: docker/bake-action@v3
+      uses: docker/bake-action@v4
       with:
         push: 'true'
         files: |
