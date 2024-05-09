@@ -5,6 +5,13 @@ updates:
   directory: /
   schedule:
     interval: weekly
+  groups:
+    patch:
+      applies-to: version-updates
+      patterns:
+        - "*"
+      update-types:
+        - "patch"
 
 - package-ecosystem: docker
   directory: /
@@ -15,6 +22,13 @@ updates:
   directory: /
   schedule:
     interval: weekly
+  groups:
+    patch:
+      applies-to: version-updates
+      patterns:
+        - "*"
+      update-types:
+        - "patch"
 
 - package-ecosystem: npm
   directory: /frontend/
@@ -23,3 +37,10 @@ updates:
     update-types: [version-update:semver-major]
   schedule:
     interval: daily
+  groups:
+    patch:
+      applies-to: version-updates
+      patterns:
+        - "*"
+      update-types:
+        - "patch"

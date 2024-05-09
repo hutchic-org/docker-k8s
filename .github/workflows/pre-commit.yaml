@@ -11,17 +11,17 @@ jobs:
     if: ${{ github.actor != 'pull[bot]' }}
     steps:
     - run: echo "$github.actor"
-    - uses: amannn/action-semantic-pull-request@v5.4.0
+    - uses: amannn/action-semantic-pull-request@v5.5.2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   pre-commit:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4.0.0
-    - uses: actions/setup-python@v5.0.0
+    - uses: actions/setup-python@v5.1.0
       with:
         python-version: '3.8'
     - run: pip install 'virtualenv<20.11.0'
-    - uses: pre-commit/action@v3.0.0
+    - uses: pre-commit/action@v3.0.1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}

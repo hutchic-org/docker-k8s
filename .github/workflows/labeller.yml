@@ -12,7 +12,7 @@ jobs:
       continue-on-error: true
       with:
         repo-token: ${{ secrets.AUTO_MERGE_TOKEN }}
-    - uses: TimonVS/pr-labeler-action@v4.1.1
+    - uses: TimonVS/pr-labeler-action@v5.0.0
       continue-on-error: true
       env:
         GITHUB_TOKEN: ${{ secrets.AUTO_MERGE_TOKEN }}
